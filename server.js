@@ -4,6 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const workoutRoutes = require('./routes/workouts')
 const userRoutes = require('./routes/user')
+const path = require("path");
 
 //express app
 const app = express()
@@ -19,6 +20,11 @@ app.use((request, response, next) => {
 //routes
 app.use('/api/workouts', workoutRoutes)
 app.use('/api/user', userRoutes)
+
+app.use(express.static(path.join(__dirname, "build"))); 
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  });
 
 
 //connect too DB
