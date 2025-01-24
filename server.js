@@ -32,7 +32,7 @@ mongoose.connect(process.env.MONGO_URI)
     .then(() => {
 
         //listen requests
-        app.listen(process.env.PORT, () => {
+        app.listen(process.env.PORT || 8080, () => {
             console.log('connected to DB & listening on port 4000')
         })
     })
